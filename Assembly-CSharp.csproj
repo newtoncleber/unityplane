@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\Aviao.cs" />
+     <Compile Include="Assets\scripts\GeradorDeObstaculos.cs" />
      <Compile Include="Assets\scripts\Obstaculo.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/newto/dev/unityplane/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
