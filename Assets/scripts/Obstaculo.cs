@@ -5,8 +5,15 @@ using UnityEngine;
 public class Obstaculo : MonoBehaviour
 {   
     [SerializeField]
-    private float velocidade = 0.1f;
+    private float velocidade;
+    [SerializeField]
+    private float variacaoEixoY;
+
+    private void Awake(){
+        this.transform.Translate(Vector3.up * Random.Range(-this.variacaoEixoY,this.variacaoEixoY) );
+    }
+
     private void Update(){
-        this.transform.Translate(Vector3.left * this.velocidade);
+        this.transform.Translate(Vector3.left * this.velocidade * Time.deltaTime);
     } 
 }
