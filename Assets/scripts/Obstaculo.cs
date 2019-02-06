@@ -16,4 +16,18 @@ public class Obstaculo : MonoBehaviour
     private void Update(){
         this.transform.Translate(Vector3.left * this.velocidade * Time.deltaTime);
     } 
+
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        this.Destruir();
+    }
+
+    private void Destruir(){
+        GameObject.Destroy(this.gameObject);
+    }
 }
