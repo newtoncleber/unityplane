@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Diretor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject ImagemGameOver;
+    private Aviao aviao;
+    private void Start()
     {
-        
+        this.aviao = GameObject.FindObjectOfType<Aviao>();
+    }  
+    public void FinalizarJogo()
+    {
+        this.ImagemGameOver.SetActive(true);
+        Time.timeScale = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ReiniciarJogo(){
+        this.ImagemGameOver.SetActive(false);
+        this.aviao.Reiniciar();
+        this.DestruirObstaculos();
+        Time.timeScale = 1;        
+    }
+
+    private void DestruirObstaculos(){
+        Obstaculo[] obstaculos = GameObject.FindObjectsOfType<Obstaculo>();
+        foreach(Obstaculo obstaculo in obstaculos)
+        {
+            obstaculo.Destruir();
+        }        
     }
 }
