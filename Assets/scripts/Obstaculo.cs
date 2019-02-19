@@ -8,20 +8,31 @@ public class Obstaculo : MonoBehaviour
     private float velocidade;
     [SerializeField]
     private float variacaoEixoY;
+    private Vector3 posicaoDoAviao;
+    private Pontuacao pontuacao;
+    private bool pontuei;
 
     private void Awake(){
         this.transform.Translate(Vector3.up * Random.Range(-this.variacaoEixoY,this.variacaoEixoY) );
+        this.pontuei = false;
+    }
+
+    private void Start()
+    {
+        this.posicaoDoAviao = GameObject.FindObjectOfType<Aviao>().transform.position;
+        this.pontuacao = GameObject.FindObjectOfType<Pontuacao>();
     }
 
     private void Update(){
         this.transform.Translate(Vector3.left * this.velocidade * Time.deltaTime);
+
+        if(!this.pontuei && this.transform.position.x < this.posicaoDoAviao.x)
+        {
+            this.pontuei = true;
+            this.pontuacao.AdicionarPontos();
+        }        
     } 
 
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         this.Destruir();
